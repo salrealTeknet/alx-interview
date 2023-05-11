@@ -11,7 +11,7 @@ summ = 0
 
 def prn_stats():
     """
-    Function that print stats about log
+    Functon for printing stats about log
     """
     global summ
 
@@ -25,18 +25,18 @@ def prn_stats():
 if __name__ == "__main__":
     cnt = 0
     try:
-        """ Iter the standar input """
+        """ standerd input  """
         for data in sys.stdin:
             try:
                 fact = data.split(' ')
-                """ If there is a status code """
+                """ check status code """
                 if fact[-2] in stcd:
                     stcd[fact[-2]] += 1
-                """ If there is a lenght """
+                """ checking  lenght """
                 summ += int(fact[-1])
             except:
                 pass
-            """ Printing control """
+            """ control printing progress from input """
             cnt += 1
             if cnt == 10:
                 prn_stats()
