@@ -1,19 +1,24 @@
 #!/usr/bin/python3
-"""Change making module.
-"""
+"""Add up coins to a sum"""
+
 
 def makeChange(coins, total):
+    """Tell the number of coins required for a sum"""
     if total <= 0:
         return 0
+    if len(coins) <= 0:
+        return -1
 
-    """ Create an array to store the minimum number of coins required to reach each value"""
-    min_coins = [float('inf')] * (total + 1)
-    min_coins[0] = 0
+    sc = sorted(coins)
+    sc = sc[::-1]
 
-    for coin in coins:
-        for i in range(coin, total + 1):
-            # Update the minimum number of coins required for each value
-            min_coins[i] = min(min_coins[i], min_coins[i - coin] + 1)
+    num = 0
+    running = total
+    for c in sc:
+        while (running - c >= 0):
+            running = running - c
+            num = num + 1
 
-    # Return the minimum number of coins required to reach the total value
-    return min_coins[total] if min_coins[total] != float('inf') else -1
+    if running != 0 and running - sc[-1] < 0:
+        return -1
+    return num
